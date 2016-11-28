@@ -27,12 +27,14 @@ Template.body.helpers({
 Template.body.events({
   'submit .new-task'(event) {
     event.preventDefault();
- 
     const target = event.target;
     const text = target.text.value;
-	 Meteor.call('tasks.insert', text);
- 
+	const text1 = target.text.value;
+    const date = target.date.value;
+	Meteor.call('tasks.insert', text,text1,date);
     target.text.value = '';
+	target.text1.value = '';
+    target.date.value = '';
   },
 	'change .hide-completed input'(event, instance) {
     instance.state.set('hideCompleted', event.target.checked);
